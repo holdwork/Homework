@@ -1,0 +1,16 @@
+Variable	Description
+SubjID	Identifier for each subject; each value corresponds to a different subject
+Age	Subject’s age in years
+Gender	1 = female, 2 = male (TODO: is this correct?)
+PSQI	Pittsburgh Sleep Quality Index
+PSAScog	PSAScog - pre-sleep cognitive arousal
+FOMO	fear of missing out
+SMUISa	emotional connection to social media
+SM1	overall social media use
+SM2	nighttime-specific social media use
+HADSa	anxiety (Hospital Anxiety and Depression Scale)
+HADSd	HADSd - depression (Hospital Anxiety and Depression Scale)
+RSES	Rosenberg Self Esteem Scale
+Bedtime	in decimal hours since noon (e.g. 10.75 = 10.45pm / 13 = 1.00am)
+Latency	sleep onset latency (in minutes)
+Duration	Duration - total sleep time (in hours)
