@@ -1,0 +1,116 @@
+---
+title: "Homework3v7"
+author: "Jim Holdnack"
+date: "January 28, 2019"
+output:  
+  html_document:
+    keep_md: true
+---
+# 1 
+
+a. find current directory: use pwd 
+   - jhold@DESKTOP-BVT54UQ MINGW64 ~ $ pwd = /c/Users/jhold
+b. change directory to where I want to clone git use cd: 
+     $ cd /c/Users/jhold/Desktop
+c. new directory
+      jhold@DESKTOP-BVT54UQ MINGW64 ~/Desktop
+d. initialize new local directory to clone git repo: use git init
+      git init /c/Users/jhold/Desktop/Caeser0301
+      Initialized empty Git repository in C:/Users/jhold/Desktop/Caeser0301/.git/
+e. clone to my local repository: use git clone
+       jhold@DESKTOP-BVT54UQ MINGW64 ~/Desktop/Caeser0301 (master)
+       git clone https://github.com/awesomedata/awesome-public-datasets 
+          Cloning into 'awesome-public-datasets'...
+          remote: Enumerating objects: 76, done.
+          remote: Counting objects: 100% (76/76), done.
+          remote: Compressing objects: 100% (37/37), done.
+          remote: Total 1692 (delta 49), reused 66 (delta 39), pack-reused 1616
+          Receiving objects: 100% (1692/1692), 627.23 KiB | 4.61 MiB/s, done.
+          Resolving deltas: 100% (1003/1003), done.
+f. change directory and list files: use ls
+        jhold@DESKTOP-BVT54UQ MINGW64 ~/Desktop/Caeser0301/awesome-public-datasets/Datasets (master)
+         $ ls
+        titanic.csv.zip
+
+
+
+# 2 Data Summary (20 points): From this aforementioned cloned repo, please extract
+
+
+```{r echo=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+# Homework Question 2a,b,c
+# load tidyverse library to read .csv files
+library(tidyverse)
+getwd()
+#read .csv file from local director where .md file is saved
+df <- read_csv(file="titanic.csv")
+#check contents of file
+head(df)
+str(df)
+# create table of sex counts
+sexn <- df$Sex
+table(sexn)
+# create a vector of means using sappy missing values in age cause it ti return NA need to drop those in calculation
+v1 <- df[c(2,6,10)]
+sapply(v1,mean, na.rm=TRUE)
+```
+
+## Function Building (30 points): You research sleep and just got your first data set.
+
+```{r }
+# Homework Question 3
+# load tidyverse library to read .csv files
+library(tidyverse)
+getwd()
+#read .csv file from local director where .md file is saved
+sdat <- read_csv(file="sleep_data_01.csv")
+#check contents of file
+head(sdat)
+str(sdat)
+# create a function to return median, min, max, range, mean sd for 2,12,15, make sure missing not included
+new_df_descriptive <- function(data.frame) {
+  a <- sdat$Age
+  b <- sdat$RSES
+  c <- sdat$Duration
+  a1 <- median(a, na.rm=TRUE) 
+  c1 <- min(c, na.rm=TRUE)
+  c2 <- max(c, na.rm=TRUE)
+  c3 <- c2-c1
+  b1 <- mean(b,na.rm=TRUE)/5
+  b2 <- sd(b,na.rm=TRUE)/5
+  x1 <- c("MedianAge", "SelfEsteem", "SE_SD", "DurationRange")
+  x2 <- c(a1,b1,b2,c3)
+  x3 <- c("statistic","value")
+  report <- cbind(x1, x2)
+  # i tried data.frame and it never works not sure what to do
+  return(report)
+}
+# apply function to data
+new_df_descriptive(sdat)
+```
+
+## FiveThirtyEight Data (30 points) & Data Summary (30 points):
+
+```{r}
+# Homework Question 4
+#read data file from local director where .md file is saved
+library(fivethirtyeight)
+attach(college_recent_grads)
+class(college_recent_grads)
+df <- college_recent_grads #assigning 22nd dataset to df
+head(df)
+str(df) #gives information about data set variable names and observations
+library(fivethirtyeight)
+attach(college_recent_grads)
+df <- college_recent_grads
+names(df) # gives variable names for dataset
+dim(df)# gives nuber of rows and columns
+ncol(df) # gives number of columns
+mc <- college_recent_grads$major_category
+major_count <- sapply(mc, function(x) length(unique(x))) # save counts of majors to a new vector
+
+plot(major_count)
+write.csv(df, file = "college.csv",row.names=FALSE)
+```
+
