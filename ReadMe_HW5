@@ -1,0 +1,22 @@
+This discusses the stpes used in homework 5.
+Open and clean file y2016
+
+import file – I set the working directory to file repository and used read.table. I cleaned up the import so variables were named and had correct format
+Display the summary and structure of df– i used summary str
+find mispelled name—I used grep to identify the row and then printed the row for column name.
+Upon finding the misspelled name, please remove this particular observation I used file = and subtract specific row with erroneous name
+
+Data Merging 
+1. imported the y2015 file using read.table and did clean-up like part 1 though I had to separate by comma rather than semi-colon
+2. Display the last ten rows in the dataframe I used tail command for 10 rows. All the names are boys names and all have exactly 5 as frequency of use, and all are "z" names
+c. Merge y2016 and y2015 by your Name column. I merged on both name and sex to make for a cleaner merge. I used the na omit function to get rid og missing data rows 
+- I used head 100 to make sure no missing data was present
+
+Data Summary 
+1. create a new column of total frequency -- I added frequency.x + frequency.y
+2. I sorted by total and found the top names were Emma Olivia Noah Liam Sophia Ava Mason William Jacob Isabella
+3.  I dropped all the boys and created a new date frame if just girls names by using sex =F, I sorted by total and listed the top girl names
+Emma Olivia Sophia Ava Isabella Mia Charlotte Abigail Emily Harper 
+4. I wrote the results of the topten girls names to a file called TopGirlNames by selecting only frequencies > 21000
+
+
