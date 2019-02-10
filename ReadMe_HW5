@@ -19,4 +19,15 @@ Data Summary
 Emma Olivia Sophia Ava Isabella Mia Charlotte Abigail Emily Harper 
 4. I wrote the results of the topten girls names to a file called TopGirlNames by selecting only frequencies > 21000
 
+File names
+df = initial import of raw text file for year 2016 to a R data.frame (note: name was initially a factor and was changed to character)
+y2016 = data with correct variable names and removed data observation with incorrect duplicate data
+df2 = intial import of raw text file for year 2015
+y2015 = data with correct variable names for further processing
+nd1 = initial data merge for y2016 with 2015
+final = merged data cleaned up so no missing data was present and total frequency for years 2015 + 2016 were calculated
+finalSort = dataframe used to identify top 10 names
+finalFsort = dataframe used to identify top 10 girls names
+finalExport = dataframe used to create .csv file with top 10 girls names
+
 
