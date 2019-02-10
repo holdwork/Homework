@@ -1,0 +1,51 @@
+---
+title: "Homework#5"
+author: "Jim Holdnack"
+date: "February 10, 2019"
+output: html_document
+---
+###### Open and clean file y2016
+1. import file -- I set the working directory to file repository and used read.table. I cleaned up the import so variables were named and had correct format
+2. Display the summary and structure of df-- i used summary str
+3. find mispelled name---I used grep to identify the row and then printed the row for column name.
+d. Upon finding the misspelled name, please remove this particular observation I used file = and subtract specific row with erroneous name
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+getwd()
+setwd("/Users/jhold/Desktop/homework5")
+library(tidyverse)
+library(readr)
+df <- read.table("/Users/jhold/Desktop/homework5/yob2016.txt", sep = ';' )
+df$name <- as.character(df$V1)
+df$sex  <- df$V2
+df$Frequency <- df$V3
+df <- df[-c(1,2,3)]
+str(df)
+summary(df)
+grep('yyy',df$name)
+df$name[212]
+y2016 <-df[-212,]
+str(y2016)
+```
+## Data Merging 
+1. imported the y2015 file using read.table and did clean-up like part 1 though I had to separate by comma rather than semi-colon
+2. Display the last ten rows in the dataframe I used tail command for 10 rows. All the names are boys names and all have exactly 5 as frequency of use, and all are "z" names
+c. Merge y2016 and y2015 by your Name column. I merged on both name and sex to make for a cleaner merge. I used the na omit function to get rid og missing data rows - I used head 100 to make sure no missing data was present
+
+```{r, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+df2 <- read.table("/Users/jhold/Desktop/homework5/yob2015.txt", sep = ',')
+df2$name <- as.character(df2$V1)
+df2$sex  <- df2$V2
+df2$Frequency <- df2$V3
+y2015 <- df2[-c(1,2,3)]
+tail(y2015,10)
+nd1 <- merge(y2016, y2015, union("name", "sex"), all=TRUE)
+head(nd1,100)
+nd1$missx <-is.na(nd1$Frequency.x)
+final <- na.omit(nd1)
+str(final)
+final <- final[c(1,2,3,4)]
+head(final,100)
+```
